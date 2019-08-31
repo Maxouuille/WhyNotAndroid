@@ -116,7 +116,7 @@ public class Home extends MenuActivity implements NavigationView.OnNavigationIte
 
             @Override
             public void onFailure(Call<ArrayList<UserDTO>> call, Throwable t) {
-                Log.d("toz", "CA MARCHE PAS CA MARCHE PAS QUAND JE CLIQUE SUR LE LIEN CA MARCHE PAS");
+                Log.d("Home", "Impossible de recuperer les utilisateurs");
             }
         });
 
@@ -136,7 +136,7 @@ public class Home extends MenuActivity implements NavigationView.OnNavigationIte
 
             @Override
             public void onFailure(Call<RegisterResultDTO> call, Throwable t) {
-                Toast.makeText(Home.this, "CA MARCHE PAS :(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "Error :(", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -156,9 +156,9 @@ public class Home extends MenuActivity implements NavigationView.OnNavigationIte
                         ViewDialog matchDialog = new ViewDialog();
                         matchDialog.showDialog(Home.this, userDTOList.get(0).getUsername(), userDTOList.get(0).getPhoto(), userDTOList);
                         cleanUserList();
-                        Toast.makeText(Home.this, "UN MATCH BRAVO !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home.this, "UN MATCH BRAVO (งツ)ว ", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(Home.this, "Good luck ;)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home.this, "Attendons une bonne réponse ", Toast.LENGTH_SHORT).show();
                         cleanUserList();
                         setViewed(id);
                     }

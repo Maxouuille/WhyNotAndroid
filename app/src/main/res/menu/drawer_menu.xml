@@ -12,10 +12,6 @@
             android:id="@+id/drawer_menu_match"
             android:icon="@drawable/ic_match"
             android:title="Match" />
-        <item
-            android:id="@+id/drawer_menu_chat"
-            android:icon="@drawable/ic_home"
-            android:title="Chats" />
 
         <item
             android:id="@+id/drawer_menu_event"

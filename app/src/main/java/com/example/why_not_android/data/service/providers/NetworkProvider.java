@@ -25,7 +25,7 @@ public class NetworkProvider {
     private static NetworkProvider instance;
     private static Retrofit retrofit = null;
     private final static String localBaseUrl = "http://10.0.2.2:3000/";
-    private final static String prodBaseUrl = "https://whynot-api.herokuapp.com/";
+    private final static String prodBaseUrl = "http://10.0.2.2:3000/";
 
     public static NetworkProvider getInstance() {
         if (instance == null) {

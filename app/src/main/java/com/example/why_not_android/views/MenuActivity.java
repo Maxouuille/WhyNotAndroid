@@ -38,17 +38,22 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(home);
                 break;
             case R.id.drawer_menu_my_profil:
+                Intent profile = new Intent(MenuActivity.this, Profile.class);
+                startActivity(profile);
                 break;
             case R.id.drawer_menu_event:
                 Intent event = new Intent(MenuActivity.this, EventList.class);
                 startActivity(event);
                 break;
             case R.id.drawer_menu_match:
+                Intent match = new Intent(MenuActivity.this, AllChats.class);
+                startActivity(match);
                 break;
             case R.id.drawer_menu_logout:
                 break;
             case R.id.drawer_menu_leave_application:
-                break;
+                finish();
+                System.exit(0);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
