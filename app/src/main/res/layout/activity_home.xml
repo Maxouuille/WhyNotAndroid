@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".views.Home"
+    tools:openDrawer="start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foregroundGravity="center_horizontal"
+                android:src="@drawable/logosansfond" />
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            tools:context=".views.Home">
+
+            <ImageView
+                android:id="@+id/activity_home_iv"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/activity_home_user_description_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:lines="2"
+                android:textColor="@color/blueCharte"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/activity_home_iv" />
+
+            <Button
+                android:id="@+id/activity_home_dislike_button"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@color/blueCharte"
+                android:text="DISLIKE"
+                android:textColor="@color/redCharte"
+                app:layout_constraintEnd_toStartOf="@+id/activity_home_like_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_home_user_description_tv" />
+
+            <Button
+                android:id="@+id/activity_home_like_button"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/redCharte"
+                android:text="LIKE"
+                android:textColor="@color/blueCharte"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/activity_home_dislike_button"
+                app:layout_constraintTop_toBottomOf="@+id/activity_home_user_description_tv" />
+
+            <TextView
+                android:id="@+id/activity_home_empty_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/redCharte"
+                android:gravity="center"
+                android:textColor="@color/blueCharte"
+                android:textSize="30sp" />
+
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/colorPrimary"
+        app:headerLayout="@layout/nav_header_home"
+        app:menu="@menu/drawer_menu" />
+
+
+</android.support.v4.widget.DrawerLayout>

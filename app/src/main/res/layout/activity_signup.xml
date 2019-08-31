@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context=".views.SignupActivity">
+
+    <TextView
+        android:id="@+id/signupMailLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="@string/adresse_mail"
+        android:textColor="@color/redCharte"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/signupMailEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:text="nassim@hotmail.fr"
+        android:textColor="@color/blueCharte"
+        app:layout_constraintBottom_toTopOf="@id/signupMailLabel" />
+
+    <TextView
+        android:id="@+id/signupUsernameLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="@string/nom_d_utilisateur"
+        android:textColor="@color/redCharte"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/signupUsernameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:text="nassim"
+        android:textColor="@color/blueCharte" />
+
+    <TextView
+        android:id="@+id/signupPasswordLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="@string/mot_de_passe"
+        android:textColor="@color/redCharte"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/signupPasswordEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="textPassword"
+        android:text="nassim"
+        android:textColor="@color/blueCharte" />
+
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/blueCharte"
+        android:text="@string/suivant"
+        android:textColor="@color/redCharte"
+        app:layout_constraintBottom_toTopOf="@id/signupPasswordEdit" />
+
+</LinearLayout>
