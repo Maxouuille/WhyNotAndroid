@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<SessionDTO> call, Response<SessionDTO> response) {
                 SessionDTO sessionDTO = response.body();
                 if (response.isSuccessful()) {
-                    Log.d("toz", sessionDTO.getToken());
+                    Log.d("Login", sessionDTO.getToken());
 
                     sharedPreferences.edit()
                             .putString("token", sessionDTO.getToken())
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject errorJSON = new JSONObject(response.errorBody().string());
                         Toast.makeText(LoginActivity.this, errorJSON.getString("error"), Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
-                        Log.d("toz", e.toString());
+                        Log.d("Login", e.toString());
                         e.printStackTrace();
                     }
                 }

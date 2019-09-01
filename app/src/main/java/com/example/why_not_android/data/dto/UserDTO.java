@@ -13,16 +13,20 @@ public class UserDTO {
     private String photo;
     @SerializedName("birthdate")
     private String birthdate;
-    @SerializedName("sexe")
-    private String sexe;
+    @SerializedName("gender")
+    private int gender;
     @SerializedName("preference")
     private int preference;
     @SerializedName("bio")
     private String bio;
     @SerializedName("createdAt")
     private String createdAt;
+    @SerializedName("updatedAt")
+    private String updatedAt;
     @SerializedName("isDeleted")
     private String isDeleted;
+    @SerializedName("reported")
+    private String reported;
     @SerializedName("banned")
     private String banned;
 
@@ -66,12 +70,12 @@ public class UserDTO {
         this.birthdate = birthdate;
     }
 
-    public String getSexe() {
-        return sexe;
+    public int getGender() {
+        return gender;
     }
 
-    public void setSexe(String sexe) {
-        this.sexe = sexe;
+    public void setGender(int genders) {
+        this.gender = gender;
     }
 
     public int getPreference() {
@@ -122,7 +126,7 @@ public class UserDTO {
                 ", username='" + username + '\'' +
                 ", photo='" + photo + '\'' +
                 ", birthdate='" + birthdate + '\'' +
-                ", sexe='" + sexe + '\'' +
+                ", gender='" + gender + '\'' +
                 ", preference='" + preference + '\'' +
                 ", bio='" + bio + '\'' +
                 ", createdAt='" + createdAt + '\'' +

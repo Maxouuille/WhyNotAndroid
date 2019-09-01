@@ -3,6 +3,7 @@ package com.example.why_not_android.data.SharedPreferences;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class SharedPref {
 
@@ -17,5 +18,6 @@ public class SharedPref {
 
     public static String getToken() {
         return instance.getString("token", "");
+
     }
 }

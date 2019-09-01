@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".views.Home"
+    tools:context=".views.Matchs"
     tools:openDrawer="start">
 
     <LinearLayout
@@ -29,12 +29,20 @@
                 android:foregroundGravity="center_horizontal"
                 android:src="@drawable/logosansfond" />
         </android.support.v7.widget.Toolbar>
+
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".views.AllChats">
+            tools:context=".views.Matchs">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/activity_all_chats_recyclerView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
@@ -47,6 +55,5 @@
         android:background="@color/colorPrimary"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/drawer_menu" />
-
 
 </android.support.v4.widget.DrawerLayout>

@@ -29,6 +29,7 @@
                 android:foregroundGravity="center_horizontal"
                 android:src="@drawable/logosansfond" />
         </android.support.v7.widget.Toolbar>
+
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -72,12 +73,10 @@
                 android:layout_marginStart="50dp"
                 android:text="@string/activity_profile_desc_textView"
                 android:textSize="20sp"
-
                 />
 
-
-
         </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

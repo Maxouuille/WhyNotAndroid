@@ -96,7 +96,7 @@ public class Home extends MenuActivity implements NavigationView.OnNavigationIte
                         UserDTO userDTO = userDTOList.get(0);
                         textView.setText(userDTO.getUsername() + "\n" + userDTO.getPreference());
                         String url = userDTO.getPhoto();
-                        Log.d("toz", url);
+                        Log.d("Home", url);
                         //url = url.replace("localhost", "10.0.2.2");
                         Glide.with(Home.this).load(url).into(imageView);
                         displayButtons();
@@ -116,6 +116,7 @@ public class Home extends MenuActivity implements NavigationView.OnNavigationIte
 
             @Override
             public void onFailure(Call<ArrayList<UserDTO>> call, Throwable t) {
+                Toast.makeText(Home.this, "Error impossible de récuperer les users contactez le support", Toast.LENGTH_LONG).show();
                 Log.d("Home", "Impossible de recuperer les utilisateurs");
             }
         });
@@ -164,13 +165,13 @@ public class Home extends MenuActivity implements NavigationView.OnNavigationIte
                     }
 
                 } else {
-                    Log.d("CA MARCHE", "CA MARCHE PAS :(");
+                    Log.d("Home", "CA MARCHE PAS setLiked --> isSuccesful:(");
                 }
             }
 
             @Override
             public void onFailure(Call<MatchDTO> call, Throwable t) {
-                Log.d("CA MARCHE", "CA FAIL :(");
+                Log.d("Home", "CA FAIL setliked --> onFailure :(");
             }
         });
     }
@@ -226,7 +227,7 @@ public class Home extends MenuActivity implements NavigationView.OnNavigationIte
 
     @OnClick(R.id.activity_home_iv)
     void detail() {
-        Log.d("wesh", "c'est quoi ca ");
+        Log.d("Home", "details");
         Intent intent = new Intent(Home.this, DetailUser.class);
         intent.putExtra("userName", userDTOList.get(0).getUsername());
         intent.putExtra("userBio", userDTOList.get(0).getBio());

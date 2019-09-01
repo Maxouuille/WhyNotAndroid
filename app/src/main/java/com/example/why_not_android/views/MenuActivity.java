@@ -46,7 +46,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(event);
                 break;
             case R.id.drawer_menu_match:
-                Intent match = new Intent(MenuActivity.this, AllChats.class);
+                Intent match = new Intent(MenuActivity.this, Matchs.class);
                 startActivity(match);
                 break;
             case R.id.drawer_menu_logout:

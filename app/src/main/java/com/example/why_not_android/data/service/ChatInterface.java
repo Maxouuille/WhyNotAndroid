@@ -11,9 +11,6 @@ import retrofit2.http.Query;
 public interface ChatInterface {
 
     @GET
-    Call<ChatsDTO> getChats(@Header("x-access-token") String token, @Query("_id") String id);
-
-    @GET
     Call<ChatsDTO> getOneChat(@Header("x-access-token") String token, @Query("_id") String idUser, @Query("_id") String idUser2);
 
 

@@ -7,6 +7,9 @@ public class MatchDTO {
     private Boolean match;
     @SerializedName("error")
     private String error;
+    @SerializedName("name") private String name;
+    @SerializedName("imageURL") private String  imageURL;
+
 
     public Boolean getMatch() {
         return match;
@@ -22,6 +25,22 @@ public class MatchDTO {
 
     public void setError(String error) {
         this.error = error;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     @Override
