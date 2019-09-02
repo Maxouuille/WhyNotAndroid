@@ -26,6 +26,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,18 +74,41 @@ public class Chats extends AppCompatActivity {
     }
 
     @OnClick(R.id.activity_chat_send_btn) void onNextButtonClick() {
+        Toast.makeText(Chats.this, "Test",Toast.LENGTH_SHORT).show();
         ChatsService messageService;
         messageService = NetworkProvider.getClient().create(ChatsService.class);
 
+   /*
+        RequestBody emailSender =
+                RequestBody.create(
+                        okhttp3.MultipartBody.FORM, SharedPref.getEmail());
+        RequestBody emailReciver =
+                RequestBody.create(
+                        okhttp3.MultipartBody.FORM, SharedPref.getEmailUser2());
+        RequestBody message =
+                RequestBody.create(
+                        okhttp3.MultipartBody.FORM, messageEdt.getText().toString());
+        Call<MessageDTO> call = messageService.sendMessage(
+                SharedPref.getToken(),
+                emailSender,
+                emailReciver,
+                message
+        );
+         call.enqueue(new Callback<MessageDTO>() {
+    */
+
         MessageDTO messageDTO = new MessageDTO();
+        messageDTO.setEmailSender(SharedPref.getEmailUser2());
         messageDTO.setEmailReciver(SharedPref.getEmail());
-        messageDTO.setEmailReciver(SharedPref.getEmailUser2());
-        messageDTO.setEmailReciver(messageEdt.getText().toString());
-        Call<MessageDTO> messageDTOCall = messageService.sendMessage(messageDTO);
+        messageDTO.setMessage(messageEdt.getText().toString());
+        Call<MessageDTO> messageDTOCall = messageService.sendMessage2(SharedPref.getToken(), messageDTO);
+
         messageDTOCall.enqueue(new Callback<MessageDTO>() {
 
             @Override
             public void onResponse(Call<MessageDTO> call, Response<MessageDTO> response) {
+                Toast.makeText(Chats.this, "Test2",Toast.LENGTH_SHORT).show();
+                messageEdt.setText("");
                 loadData();
             }
 

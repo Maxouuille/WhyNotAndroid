@@ -22,8 +22,12 @@ public interface ChatsService {
     @Multipart
     @POST("chats/send")
     Call<MessageDTO> sendMessage(
+            @Header("x-access-token") String token,
             @Part("emailSender") RequestBody emailSender,
             @Part("emailReciver") RequestBody emailReciver,
             @Part("message") RequestBody message
     );
+
+    @POST("chats/send")
+    Call<MessageDTO> sendMessage2(@Header("x-access-token") String token, @Body MessageDTO messageDTO);
 }
