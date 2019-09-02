@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public class ChatsDTO {
 
     @SerializedName("chats")
-    private ArrayList<ChatsDTO> chats;
+    private ArrayList<ChatDTO> chats;
 
-    public ArrayList<ChatsDTO> getChatsDTOArrayList() {
+    public ArrayList<ChatDTO> getChatsDTOArrayList() {
         return chats;
     }
 }

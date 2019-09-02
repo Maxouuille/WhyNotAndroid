@@ -11,5 +11,5 @@ import retrofit2.http.Query;
 public interface MatchsService {
 
     @GET("matchs")
-    Call<MatchsDTO> getAllMatchFromUser(@Header("x-access-token") String token);
+    Call<MatchsDTO> getAllMatchFromUser(@Header("x-access-token") String token, @Query("id")String email);
 }

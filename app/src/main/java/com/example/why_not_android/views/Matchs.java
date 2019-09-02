@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,9 +60,12 @@ public class Matchs extends AppCompatActivity {
             public void onclick(Match match) {
                 //todo
 
-                Intent intent = new Intent(Matchs.this, Chat.class);
-                intent.putExtra("matchName", match.getName());
-                intent.putExtra("matchPic", match.getImageURL());
+                Intent intent = new Intent(Matchs.this, Chats.class);
+                String emailUser2 = match.getName();
+                sharedPreferences.edit()
+                        .putString("emailUser2", emailUser2)
+                        .apply();
+
                 startActivity(intent);
 
             }

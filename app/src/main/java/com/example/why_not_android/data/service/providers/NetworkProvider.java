@@ -4,15 +4,20 @@ package com.example.why_not_android.data.service.providers;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.example.why_not_android.data.Models.Chat;
 import com.example.why_not_android.data.Models.Match;
 import com.example.why_not_android.data.SharedPreferences.SharedPref;
+import com.example.why_not_android.data.dto.ChatDTO;
+import com.example.why_not_android.data.dto.ChatsDTO;
 import com.example.why_not_android.data.dto.EventDTO;
 import com.example.why_not_android.data.dto.EventsDTO;
 import com.example.why_not_android.data.dto.MatchDTO;
 import com.example.why_not_android.data.dto.MatchsDTO;
+import com.example.why_not_android.data.dto.mapper.ChatMapper;
 import com.example.why_not_android.data.dto.mapper.EventMapper;
 import com.example.why_not_android.data.Models.Event;
 import com.example.why_not_android.data.dto.mapper.MatchMapper;
+import com.example.why_not_android.data.service.ChatsService;
 import com.example.why_not_android.data.service.EventService;
 import com.example.why_not_android.data.service.MatchsService;
 import com.example.why_not_android.views.Matchs;
@@ -30,6 +35,7 @@ public class NetworkProvider {
 
     private EventService eventService;
     private MatchsService matchsService;
+    private ChatsService chatsService;
     private static NetworkProvider instance;
     private static Retrofit retrofit = null;
     private final static String localBaseUrl = "http://10.0.2.2:3000/";
@@ -59,6 +65,7 @@ public class NetworkProvider {
                 .build();
         eventService = retrofit.create(EventService.class);
         matchsService = retrofit.create(MatchsService.class);
+        chatsService = retrofit.create(ChatsService.class);
     }
 
     public void getEvents(Listener<List<Event>> listener) {
@@ -83,7 +90,7 @@ public class NetworkProvider {
     }
 
     public void getMatchs(Listener<List<Match>> listener){
-        matchsService.getAllMatchFromUser(SharedPref.getToken()).enqueue(new Callback<MatchsDTO> () {
+        matchsService.getAllMatchFromUser(SharedPref.getToken(), SharedPref.getEmail()).enqueue(new Callback<MatchsDTO> () {
             @Override
             public void onResponse(Call<MatchsDTO> call, Response<MatchsDTO> response) {
                 MatchsDTO matchsDTOList = response.body();
@@ -100,27 +107,24 @@ public class NetworkProvider {
         });
     }
 
-    /*public void getMatchs(Listener<List<Match>> listener) {
-        matchsService.getAllMatchFromUser(SharedPref.getToken(), SharedPref.getEmail()).enqueue(new Callback<MatchsDTO>() {
-
+    public void getChats(Listener<List<Chat>> listener){
+        chatsService.getAllChatBetweenTwoUser(SharedPref.getToken()).enqueue(new Callback<ChatsDTO> () {
             @Override
-            public void onResponse(Call<MatchsDTO> call, Response<MatchsDTO> response) {
-                if (response.isSuccessful()) {
-                    MatchsDTO matchsDTOList = response.body();
-                    Log.d("Test1", matchsDTOList.toString());
-                    List<MatchsDTO> matchs = matchsDTOList.getMatchsDTOArrayList();
-                    List<Match> matchsList = MatchMapper.map(matchs);
-                    listener.onSuccess(matchsList);
-                }
+            public void onResponse(Call<ChatsDTO> call, Response<ChatsDTO> response) {
+                ChatsDTO chatsDTOList = response.body();
+                List<ChatDTO> chat = chatsDTOList.getChatsDTOArrayList();
+                List<Chat> chatList = ChatMapper.map(chat);
+                listener.onSuccess(chatList);
             }
 
             @Override
-            public void onFailure(Call<MatchsDTO> call, Throwable t) {
-                listener.onError(t);
-                Log.d("Match", "fail");
+            public void onFailure(Call<ChatsDTO> call, Throwable t) {
+                Log.d("TestChat", t.toString());
+
             }
         });
-    }*/
+    }
+
 
     public interface Listener<T> {
         void onSuccess(T data);

@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".views.Profile"></activity>
-        <activity android:name=".views.Chat" />
+        <activity android:name=".views.Chats" />
         <activity android:name=".views.Matchs" />
         <activity android:name=".views.MenuActivity" />
         <activity

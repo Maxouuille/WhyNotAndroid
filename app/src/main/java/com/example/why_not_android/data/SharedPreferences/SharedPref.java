@@ -24,4 +24,8 @@ public class SharedPref {
         return instance.getString("email", "");
 
     }
+    public static String getEmailUser2() {
+        return instance.getString("emailUser2", "");
+
+    }
 }

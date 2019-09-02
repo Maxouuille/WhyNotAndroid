@@ -19,4 +19,12 @@ public class Match {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+
+    @Override
+    public String toString() {
+        return "Match{" +
+                "name='" + name + '\'' +
+                ", imageURL='" + imageURL + '\'' +
+                '}';
+    }
 }
