@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.why_not_android.R;
 import com.example.why_not_android.data.Models.Signup;
+import com.example.why_not_android.data.SharedPreferences.SharedPref;
 import com.example.why_not_android.data.dto.UserDTO;
 import com.example.why_not_android.data.service.UserService;
 import com.example.why_not_android.data.service.providers.NetworkProvider;
@@ -38,32 +39,42 @@ public class Profile extends AppCompatActivity {
 
 
     private SharedPreferences sharedPreferences;
-    private ArrayList<UserDTO> userDTOList;
+    private UserDTO userDTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        sharedPreferences = SharedPref.getInstance(this);
         ButterKnife.bind(this);
+        getUserinfo();
+
+
+    }
+
+    private void getUserinfo() {
 
         UserService userService;
         userService = NetworkProvider.getClient().create(UserService.class);
         String token = sharedPreferences.getString("token", "");
+        String email = sharedPreferences.getString("email", "");
+        Log.d("test",email);
 
-        Call<ArrayList<UserDTO>> userDTOCall = userService.getUsers(token);
-        userDTOCall.enqueue(new Callback<ArrayList<UserDTO>>() {
+        Call<UserDTO> userDTOCall = userService.getUser(token, email);
+        userDTOCall.enqueue(new Callback<UserDTO>() {
             @Override
-            public void onResponse(Call<ArrayList<UserDTO>> call, Response<ArrayList<UserDTO>> response) {
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
                 if (response.isSuccessful()) {
-                    userDTOList = response.body();
-                    UserDTO userDTO = userDTOList.get(0);
+                    userDTO = response.body();
+                    Log.d("test",userDTO.toString());
                     String url = userDTO.getPhoto();
                     nameTextView.setText(userDTO.getUsername());
                     ageTextView.setText(userDTO.getBirthdate());
                     descTextView.setText(userDTO.getBio());
-                    Glide.with(Profile.this).load(url).into(profileImageView);
+                   // Glide.with(Profile.this).load(url).into(profileImageView);
                 } else {
                     try {
+                        Log.d("test",token);
                         //Return to MainActivity if the user is no longer connected.
                         Intent intent = new Intent(Profile.this, LoginActivity.class);
                         startActivity(intent);
@@ -73,14 +84,11 @@ public class Profile extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<ArrayList<UserDTO>> call, Throwable t) {
-                Log.d("Profile", "Impossible de recuperer les infos utilisateurs");
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                Log.d("Profile", "Impossible de recuperer les infos utilisateur");
             }
         });
-
     }
-
-
 
 
 }

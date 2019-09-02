@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     sharedPreferences.edit()
                             .putString("token", sessionDTO.getToken())
+                            .putString("email", email)
                             .apply();
                     Intent intent = new Intent(LoginActivity.this, Home.class);
                     startActivity(intent);

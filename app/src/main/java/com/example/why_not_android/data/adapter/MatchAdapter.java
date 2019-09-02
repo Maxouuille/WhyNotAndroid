@@ -41,7 +41,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
         Match Match = MatchList.get(i);
         MatchViewHolder.nameTv.setText(Match.getName());
-        Glide.with(MatchViewHolder.itemView).load(Match.getImageURL().replace("localhost","10.0.2.2")).into(MatchViewHolder.pictureImv);
 
         if (itemClickListener!= null){
             MatchViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +57,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     }
 
     class MatchViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.itemImageView)
-        ImageView pictureImv;
-        @BindView(R.id.itemTextViewDate)
-        TextView dateTv;
-        @BindView(R.id.itemTextViewName) TextView nameTv;
+
+        @BindView(R.id.itemMatchTextViewName) TextView nameTv;
 
         public MatchViewHolder(@NonNull View itemView) {
             super(itemView);

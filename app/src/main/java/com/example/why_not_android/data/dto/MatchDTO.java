@@ -7,8 +7,8 @@ public class MatchDTO {
     private Boolean match;
     @SerializedName("error")
     private String error;
-    @SerializedName("name") private String name;
-    @SerializedName("imageURL") private String  imageURL;
+    @SerializedName("emailUser1") private String emailUser1;
+    @SerializedName("emailUser2") private String  emailUser2;
 
 
     public Boolean getMatch() {
@@ -27,20 +27,20 @@ public class MatchDTO {
         this.error = error;
     }
 
-    public String getName() {
-        return name;
+    public String getemailUser1() {
+        return emailUser1;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setemailUser1(String name) {
+        this.emailUser1 = name;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getemailUser2() {
+        return emailUser2;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setemailUser2(String imageURL) {
+        this.emailUser2 = imageURL;
     }
 
     @Override

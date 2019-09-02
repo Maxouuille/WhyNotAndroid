@@ -1,12 +1,14 @@
 package com.example.why_not_android.data.service.providers;
 
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.why_not_android.data.Models.Match;
 import com.example.why_not_android.data.SharedPreferences.SharedPref;
 import com.example.why_not_android.data.dto.EventDTO;
 import com.example.why_not_android.data.dto.EventsDTO;
+import com.example.why_not_android.data.dto.MatchDTO;
 import com.example.why_not_android.data.dto.MatchsDTO;
 import com.example.why_not_android.data.dto.mapper.EventMapper;
 import com.example.why_not_android.data.Models.Event;
@@ -32,6 +34,7 @@ public class NetworkProvider {
     private static Retrofit retrofit = null;
     private final static String localBaseUrl = "http://10.0.2.2:3000/";
     private final static String prodBaseUrl = "https://why-not-max.herokuapp.com/";
+    private SharedPreferences sharedPreferences;
 
     public static NetworkProvider getInstance() {
         if (instance == null) {
@@ -55,6 +58,7 @@ public class NetworkProvider {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         eventService = retrofit.create(EventService.class);
+        matchsService = retrofit.create(MatchsService.class);
     }
 
     public void getEvents(Listener<List<Event>> listener) {
@@ -78,13 +82,32 @@ public class NetworkProvider {
         });
     }
 
-    public void getMatchs(Listener<List<Match>> listener) {
-        matchsService.getAllMatchFromUser(SharedPref.getToken(), "5d6ba27328ebd30017dde42b").enqueue(new Callback<MatchsDTO>() {
+    public void getMatchs(Listener<List<Match>> listener){
+        matchsService.getAllMatchFromUser(SharedPref.getToken()).enqueue(new Callback<MatchsDTO> () {
+            @Override
+            public void onResponse(Call<MatchsDTO> call, Response<MatchsDTO> response) {
+                MatchsDTO matchsDTOList = response.body();
+                List<MatchDTO> match = matchsDTOList.getMatchsDTOList();
+                List<Match> matchList = MatchMapper.map(match);
+                listener.onSuccess(matchList);
+            }
+
+            @Override
+            public void onFailure(Call<MatchsDTO> call, Throwable t) {
+                Log.d("TestMAtch", t.toString());
+
+            }
+        });
+    }
+
+    /*public void getMatchs(Listener<List<Match>> listener) {
+        matchsService.getAllMatchFromUser(SharedPref.getToken(), SharedPref.getEmail()).enqueue(new Callback<MatchsDTO>() {
 
             @Override
             public void onResponse(Call<MatchsDTO> call, Response<MatchsDTO> response) {
                 if (response.isSuccessful()) {
                     MatchsDTO matchsDTOList = response.body();
+                    Log.d("Test1", matchsDTOList.toString());
                     List<MatchsDTO> matchs = matchsDTOList.getMatchsDTOArrayList();
                     List<Match> matchsList = MatchMapper.map(matchs);
                     listener.onSuccess(matchsList);
@@ -97,7 +120,7 @@ public class NetworkProvider {
                 Log.d("Match", "fail");
             }
         });
-    }
+    }*/
 
     public interface Listener<T> {
         void onSuccess(T data);

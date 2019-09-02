@@ -13,9 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.example.why_not_android.R;
-import com.example.why_not_android.data.Models.Event;
 import com.example.why_not_android.data.Models.Match;
-import com.example.why_not_android.data.adapter.EventAdapter;
+import com.example.why_not_android.data.SharedPreferences.SharedPref;
 import com.example.why_not_android.data.adapter.MatchAdapter;
 import com.example.why_not_android.data.service.providers.NetworkProvider;
 
@@ -47,6 +46,7 @@ public class Matchs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matchs);
         ButterKnife.bind(this);
+        sharedPreferences = SharedPref.getInstance(this);
         initRcv();
         loadData();
     }
@@ -60,10 +60,12 @@ public class Matchs extends AppCompatActivity {
             @Override
             public void onclick(Match match) {
                 //todo
-                Intent intent = new Intent(Matchs.this, DetailEvent.class);
+
+                Intent intent = new Intent(Matchs.this, Chat.class);
                 intent.putExtra("matchName", match.getName());
                 intent.putExtra("matchPic", match.getImageURL());
                 startActivity(intent);
+
             }
         });
     }

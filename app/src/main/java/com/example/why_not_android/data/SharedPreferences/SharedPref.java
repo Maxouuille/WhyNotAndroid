@@ -20,4 +20,8 @@ public class SharedPref {
         return instance.getString("token", "");
 
     }
+    public static String getEmail() {
+        return instance.getString("email", "");
+
+    }
 }
